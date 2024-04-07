@@ -19,6 +19,11 @@ public class PatientService {
     @Autowired
     private EmployeeRepository employeeRepository;
 
+    public PatientService(PatientRepository patientRepository, EmployeeRepository employeeRepository) {
+        this.patientRepository = patientRepository;
+        this.employeeRepository = employeeRepository;
+    }
+
     public List<Patient> getAllPatients() {
         return patientRepository.findAll();
     }
@@ -40,7 +45,7 @@ public class PatientService {
         List<Employee> doctorsWithStatusOFF = employeeRepository.findByStatus("OFF");
         List<Patient> patientsWithDoctorsStatusOFF = new ArrayList<>();
         for (Employee doctor : doctorsWithStatusOFF) {
-            List<Patient> patientsForDoctor = patientRepository.findByAdmittedBy(doctor.getEmployeeId());
+            List<Patient> patientsForDoctor = patientRepository.findByAdmittedBy(doctor);
             patientsWithDoctorsStatusOFF.addAll(patientsForDoctor);
         }
         return patientsWithDoctorsStatusOFF;

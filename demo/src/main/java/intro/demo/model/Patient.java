@@ -6,13 +6,17 @@ import jakarta.persistence.*;
 public class Patient {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "admitting_doctor_department")
-    private String admittingDoctorDepartment;
     private Long id;
+
+    @Column(name = "patient_id")
     private Long patientId;
+
     private String name;
     private String dateOfBirth;
-    private Long admittedBy;
+
+    @ManyToOne
+    @JoinColumn(name = "admitted_by")
+    private Employee admittedBy;
 
     // Constructors, getters, and setters
 
@@ -48,12 +52,11 @@ public class Patient {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public Long getAdmittedBy() {
+    public Employee getAdmittedBy() {
         return admittedBy;
     }
 
-    public void setAdmittedBy(Long admittedBy) {
+    public void setAdmittedBy(Employee admittedBy) {
         this.admittedBy = admittedBy;
     }
 }
-

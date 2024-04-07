@@ -9,8 +9,9 @@ import java.util.List;
 public interface PatientRepository extends JpaRepository<Patient, Long> {
     Patient findByPatientId(Long patientId);
     List<Patient> findByDateOfBirthBetween(String startDate, String endDate);
-    List<Patient> findByAdmittedBy(Long admittedBy);
+    List<Patient> findByAdmittedBy(Employee admittedBy);
     List<Patient> findByAdmittingDoctorDepartment(String department);
     List<Patient> findByDoctorStatus(String status);
+    List<Patient> findByAdmittedByDepartment(String department);
 }
 

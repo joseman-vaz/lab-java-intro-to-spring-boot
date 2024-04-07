@@ -1,9 +1,8 @@
 package intro.demo.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 public class Employee {
@@ -14,6 +13,8 @@ public class Employee {
     private String department;
     private String name;
     private String status;
+    @OneToMany(mappedBy = "admittedBy")
+    private List<Patient> patients;
 
     public Long getId() {
         return id;
@@ -54,6 +55,6 @@ public class Employee {
     public void setStatus(String status) {
         this.status = status;
     }
-// Constructors, getters, and setters
+
 }
 
